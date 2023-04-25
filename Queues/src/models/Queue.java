@@ -1,4 +1,9 @@
 package models;
 
-public class Queue {
+public class Queue implements Runnable{
+
+
+    public void run() {
+
+    }
 }

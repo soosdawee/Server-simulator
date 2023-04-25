@@ -1,2 +1,4 @@
-package models;public class Scheduler {
+package models;
+
+public class Scheduler {
 }

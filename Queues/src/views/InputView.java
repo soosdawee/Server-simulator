@@ -106,64 +106,64 @@ public class InputView extends JFrame{
         this.setVisible(true);
     }
 
-    public JTextField getNrOfClients() {
-        return nrOfClients;
+    public String getNrOfClients() {
+        return nrOfClients.getText();
     }
 
     public void setNrOfClients(JTextField nrOfClients) {
         this.nrOfClients = nrOfClients;
     }
 
-    public JTextField getNrOfQueues() {
-        return nrOfQueues;
+    public String getNrOfQueues() {
+        return nrOfQueues.getText();
     }
 
     public void setNrOfQueues(JTextField nrOfQueues) {
         this.nrOfQueues = nrOfQueues;
     }
 
-    public JTextField getSimulationInterval() {
-        return simulationInterval;
+    public String getSimulationInterval() {
+        return simulationInterval.getText();
     }
 
     public void setSimulationInterval(JTextField simulationInterval) {
         this.simulationInterval = simulationInterval;
     }
 
-    public JTextField getMinArrivalTime() {
-        return minArrivalTime;
+    public String getMinArrivalTime() {
+        return minArrivalTime.getText();
     }
 
     public void setMinArrivalTime(JTextField minArrivalTime) {
         this.minArrivalTime = minArrivalTime;
     }
 
-    public JTextField getMaxArrivalTime() {
-        return maxArrivalTime;
+    public String getMaxArrivalTime() {
+        return maxArrivalTime.getText();
     }
 
     public void setMaxArrivalTime(JTextField maxArrivalTime) {
         this.maxArrivalTime = maxArrivalTime;
     }
 
-    public JTextField getMinServiceTime() {
-        return minServiceTime;
+    public String getMinServiceTime() {
+        return minServiceTime.getText();
     }
 
     public void setMinServiceTime(JTextField minServiceTime) {
         this.minServiceTime = minServiceTime;
     }
 
-    public JTextField getMaxServiceTime() {
-        return maxServiceTime;
+    public String getMaxServiceTime() {
+        return maxServiceTime.getText();
     }
 
     public void setMaxServiceTime(JTextField maxServiceTime) {
         this.maxServiceTime = maxServiceTime;
     }
 
-    public JTextArea getSituation() {
-        return situation;
+    public String getSituation() {
+        return situation.getText();
     }
 
     public void setSituation(String situation) {
