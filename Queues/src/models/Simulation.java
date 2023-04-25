@@ -1,2 +1,4 @@
-package models;public class Simulation {
+package models;
+
+public class Simulation {
 }

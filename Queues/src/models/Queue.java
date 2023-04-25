@@ -1,2 +1,4 @@
-package models;public class Queue {
+package models;
+
+public class Queue {
 }

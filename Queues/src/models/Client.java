@@ -1,2 +1,5 @@
-package models;public class Client {
+package models;
+
+public class Client {
+
 }
