@@ -173,4 +173,8 @@ public class InputView extends JFrame{
     public void addStartListener (ActionListener action) {
         startButton.addActionListener(action);
     }
+
+    public void refreshBoxes() {
+        situation.setText(null);
+    }
 }

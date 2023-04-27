@@ -14,6 +14,6 @@ public class Validator {
     }
 
     public static Integer generateQueueId() {
-        return queueId;
+        return queueId++;
     }
 }

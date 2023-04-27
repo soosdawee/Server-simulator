@@ -28,7 +28,10 @@ public class InputController {
             Integer minServiceTime = Integer.parseInt(view.getMinServiceTime());
             Integer maxServiceTime = Integer.parseInt(view.getMaxServiceTime());
 
-          
+            SimulationManager simulationManager = new SimulationManager(numberOfClients, numberOfQueues, simulationInterval, minArrivalTime, maxArrivalTime, minServiceTime, maxServiceTime, view);
+
+            Thread t = new Thread(simulationManager);
+            t.start();
         }
     }
 }
