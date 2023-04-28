@@ -85,21 +85,18 @@ public class Queue implements Runnable{
                     continue;
                 }
 
-                if (clients.size() > 1) {
-                    totalWaitingTime.getAndIncrement();
-                    System.out.println("waiting++");
-                }
-
                 Thread.sleep(1000);
 
                 clients.peek().setProcessingTime(clients.peek().getProcessingTime() - 1);
                 totalServiceTime.getAndIncrement();
-                System.out.println("service++");
 
                 if (clients.peek().getProcessingTime().intValue() == 0) {
                     clientsProcessed.getAndIncrement();
                     clients.remove();
-                    clientsProcessed.getAndIncrement();
+                }
+
+                if (clients.size() > 1) {
+                    totalWaitingTime.set(totalWaitingTime.get() + clients.size() - 1);
                 }
 
             } catch (InterruptedException e) {
@@ -116,9 +113,8 @@ public class Queue implements Runnable{
         t.start();
     }
 
-    public Boolean stop() {
+    public void stop() {
         running.set(false);
-        return true;
     }
 
     @Override
@@ -145,7 +141,6 @@ public class Queue implements Runnable{
 
         clients.add(client);
 
-        totalWaitingTime.addAndGet(waitingTime.get());
         clientsProcessed.getAndIncrement();
         waitingTime.addAndGet(client.getProcessingTime());
     }

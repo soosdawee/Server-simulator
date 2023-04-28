@@ -10,7 +10,27 @@ public class Scheduler {
     public Scheduler(List<Queue> queues, Integer maxNumberOfQueues) {
         this.queues = queues;
         this.maxNumberOfQueues = maxNumberOfQueues;
-        this.time = 0;
+        this.time = -1;
+    }
+
+    public List<Queue> getQueues() {
+        return queues;
+    }
+
+    public void setQueues(List<Queue> queues) {
+        this.queues = queues;
+    }
+
+    public Integer getMaxNumberOfQueues() {
+        return maxNumberOfQueues;
+    }
+
+    public void setMaxNumberOfQueues(Integer maxNumberOfQueues) {
+        this.maxNumberOfQueues = maxNumberOfQueues;
+    }
+
+    public void setTime(Integer time) {
+        this.time = time;
     }
 
     public Integer getTime() {
@@ -57,7 +77,6 @@ public class Scheduler {
                     id = q.getId() - 1;
                 }
             } catch (NullPointerException e) {
-                System.out.println(q.getId() - 1);
                 return q.getId() - 1;
             }
         }
@@ -93,14 +112,14 @@ public class Scheduler {
         return s;
     }
 
-    public Float averageWaitingTime() {
+    public Float averageWaitingTime(Integer numberOfClients) {
         Float s = 0f;
 
         for (Queue q : queues) {
             s += q.getTotalWaitingTime().get();
         }
 
-        s /= maxNumberOfQueues;
+        s /= numberOfClients;
 
         return s;
     }
@@ -110,6 +129,7 @@ public class Scheduler {
 
         for (Queue q : queues) {
             s += q.getTotalServiceTime().get();
+//            System.out.println("Service time: " + q.getTotalServiceTime().get());
         }
 
         s /= maxNumberOfQueues;

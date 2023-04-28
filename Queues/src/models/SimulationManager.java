@@ -2,6 +2,8 @@ package models;
 
 import views.InputView;
 
+import java.io.BufferedWriter;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
@@ -18,6 +20,7 @@ public class SimulationManager implements Runnable{
     private Scheduler scheduler;
     private List<Client> clients;
     private InputView inputView;
+    private Integer averageWaitingTime;
 
     public SimulationManager(Integer numberOfClients, Integer numberOfQueues, Integer simulationInterval,
                              Integer minArrivalTime, Integer maxArrivalTime, Integer minServiceTime, Integer maxServiceTime, InputView inputView) {
@@ -31,6 +34,7 @@ public class SimulationManager implements Runnable{
         this.scheduler = new Scheduler(createQueues(numberOfQueues), numberOfQueues);
         this.clients = generateRandomClients(numberOfClients, minArrivalTime, maxArrivalTime, minServiceTime, maxServiceTime);
         this.inputView = inputView;
+        this.averageWaitingTime = 0;
     }
 
     public List<Client> generateRandomClients(Integer nrOfClients, Integer minArrivalTime, Integer maxArrivalTime,
@@ -81,20 +85,29 @@ public class SimulationManager implements Runnable{
             } catch (InterruptedException e) {
                 System.out.println("Sleep not working");
             }
+
+            scheduler.incrementTime();
+
+            scheduler.dispatchClients(clients);
+
             if (scheduler.clientsInQueues() > max) {
                 max = scheduler.clientsInQueues();
                 peakTime = scheduler.getTime();
             }
 
-            scheduler.dispatchClients(clients);
             inputView.setSituation("Time " + scheduler.getTime()  + ":\nWaiting: " + showWaitingClients() + scheduler.showQueues());
-
-            scheduler.incrementTime();
+            System.out.println("Time " + scheduler.getTime()  + ":\nWaiting: " + showWaitingClients() + scheduler.showQueues());
+            System.out.println("-----------------------------\n");
         }
 
+        averageWaitingTime /= numberOfClients;
 
         inputView.setSituation("Time " + scheduler.getTime()  + ":\nWaiting: " + showWaitingClients() + scheduler.showQueues()
-            + "\nAvg waiting time: " + scheduler.averageWaitingTime() + "\nAvg service time: " + scheduler.averageServiceTime() +
+            + "\nAvg waiting time: " + scheduler.averageWaitingTime(numberOfClients) + "\nAvg service time: " + scheduler.averageServiceTime() +
+                "\nPeak time: " + peakTime);
+
+        System.out.println("Time " + scheduler.getTime()  + ":\nWaiting: " + showWaitingClients() + scheduler.showQueues()
+                + "\nAvg waiting time: " + scheduler.averageWaitingTime(numberOfClients) + "\nAvg service time: " + scheduler.averageServiceTime() +
                 "\nPeak time: " + peakTime);
 
         scheduler.stopQueues();
@@ -116,3 +129,5 @@ public class SimulationManager implements Runnable{
         return toReturn.toString();
     }
 }
+
+

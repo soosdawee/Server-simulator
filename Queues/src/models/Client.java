@@ -6,13 +6,11 @@ public class Client implements Comparable<Client> {
     private Integer id;
     private Integer arrivalTime;
     private Integer processingTime;
-    private Integer waitingPeriod;
 
     public Client(Integer arrivalTime, Integer processingTime) {
         this.id = Validator.generateClientId();
         this.arrivalTime = arrivalTime;
         this.processingTime = processingTime;
-        this.waitingPeriod = 0;
     }
 
     public Integer getId() {
@@ -37,22 +35,6 @@ public class Client implements Comparable<Client> {
 
     public void setProcessingTime(Integer processingTime) {
         this.processingTime = processingTime;
-    }
-
-    public Integer getWaitingPeriod() {
-        return waitingPeriod;
-    }
-
-    public void setWaitingPeriod(Integer waitingPeriod) {
-        this.waitingPeriod = waitingPeriod;
-    }
-
-    public void incrementWaitingPeriod() {
-        this.waitingPeriod++;
-    }
-
-    public void decrementWaitingPeriod() {
-        this.waitingPeriod--;
     }
 
     @Override

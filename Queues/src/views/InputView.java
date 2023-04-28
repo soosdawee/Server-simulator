@@ -174,7 +174,7 @@ public class InputView extends JFrame{
         startButton.addActionListener(action);
     }
 
-    public void refreshBoxes() {
-        situation.setText(null);
+    public void showErrorMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "ALERT", JOptionPane.ERROR_MESSAGE);
     }
 }
