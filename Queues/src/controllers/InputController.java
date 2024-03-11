@@ -28,7 +28,7 @@ public class InputController {
         @Override
         public void actionPerformed(ActionEvent e) {
             try  {
-                PrintStream out = new PrintStream("test3.txt");
+                PrintStream out = new PrintStream("output.txt");
                 System.setOut(out);
 
                 Integer numberOfClients = Integer.parseInt(view.getNrOfClients());
